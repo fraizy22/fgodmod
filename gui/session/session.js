@@ -282,7 +282,7 @@ const g_MessageMenus = {
 		],
 		go: ""
 	},
-	"short": { 
+	"short": {
 		"text": () => "Short",
 		"msg": () => g_MessageMenusSave[0],
 		keys: [
@@ -299,7 +299,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"longer_msgs": { 
+	"longer_msgs": {
 		"text": () => "Random",
 		"msg": () => g_MessageMenusSave[0],
 		keys: [
@@ -313,7 +313,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"change": { 
+	"change": {
 		"text": () => "Change",
 		keys: [
 			[ "1", { text: "Food", save: "food"  } ],
@@ -324,7 +324,7 @@ const g_MessageMenus = {
 		],
 		go: "change_for"
 	},
-	"change_for": { 
+	"change_for": {
 		"text": () => g_MessageMenus.change.text() + " " + g_MessageMenusSave[0],
 		"msg": () => "Change " + g_MessageMenusSave[0] + " for " + g_MessageMenusSave[1] + "?",
 		keys: [
@@ -376,7 +376,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"attack1": { 
+	"attack1": {
 		"text": () => "Attack (Position)",
 		"msg": () => "Attack at " + g_MessageMenusSave[0] + " (clock position).",
 		keys: [
@@ -393,7 +393,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"attack2": { 
+	"attack2": {
 		"text": () => "Attack (Position) (More)",
 		"msg": () => g_MessageMenus.attack1.msg(),
 		keys: [
@@ -406,7 +406,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"attackColor": { 
+	"attackColor": {
 		"text": () => "Attack Player",
 		"msg": () => "Attack the " + g_MessageMenusSave[0] + " player.",
 		keys: [
@@ -422,7 +422,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"help1": { 
+	"help1": {
 		"text": () => "Help (Position)",
 		"msg": () => "I need help at " + g_MessageMenusSave[0] + ". (clock position)",
 		keys: [
@@ -439,7 +439,7 @@ const g_MessageMenus = {
 		],
 		go: "msg"
 	},
-	"help2": { 
+	"help2": {
 		"text": () => g_MessageMenus.help1.text() + " (More)",
 		"msg": () => g_MessageMenus.help1.msg(),
 		keys: [
@@ -592,7 +592,7 @@ function switchMenuKey(keyGo)
 						--g_MessageMenuSendMsgs;
 						g_MessageMenuSendTimer = setTimeout(reduceMsgCountPerTime, 2500);
 					}
-						
+
 					if (g_MessageMenuSendTimer)
 						clearTimeout(g_MessageMenuSendTimer);
 					g_MessageMenuSendTimer = setTimeout(reduceMsgCountPerTime, 2500);
@@ -667,7 +667,7 @@ function updateObserver()
 
 	Engine.GetGUIObjectByName("observersList").hidden = false;
 	Engine.GetGUIObjectByName("observersList").caption = (obs.length > 0 ? setStringTags("Observers:\n" + obs.join(", ") + "\n" ,
-		{ "color": "255 255 255 255", "font": "mono-10" }) : "") + 
+		{ "color": "255 255 255 255", "font": "mono-10" }) : "") +
 		(off.length > 0 ? setStringTags("Offlines:\n" + off.join(", ") ,
 		{ "color": "255 255 255 255", "font": "mono-10" }) : "");
 }
@@ -684,7 +684,7 @@ function init(initData, hotloadData)
 
 	Engine.GetGUIObjectByName("fgodmod").caption = setStringTags("FGodMod v" + Engine.GetEngineInfo().mods.filter(mod => mod[0].startsWith("fgod"))[0][1],
 		{ "color": "255 255 255 255", "font": "mono-10" });
-	
+
 	Engine.GetGUIObjectByName("manualButton").caption = translate("Manual") + " / " + setStringTags("FGod", { "color": "white" });
 	Engine.GetGUIObjectByName("pauseButton").tooltip = colorizeHotkey("%(hotkey)s", "pause");
 	Engine.GetGUIObjectByName("chatButton").tooltip = [colorizeHotkey("%(hotkey)s", "chat"), colorizeHotkey("%(hotkey)s", "teamchat"), colorizeHotkey("%(hotkey)s", "privatechat")].join(", ");
@@ -697,7 +697,7 @@ function init(initData, hotloadData)
 	Engine.GetGUIObjectByName("tradeButton").tooltip = colorizeHotkey(translate("Barter & Trade") + " %(hotkey)s", "session.gui.barter.toggle");
 	Engine.GetGUIObjectByName("objectivesButton").tooltip = colorizeHotkey(translate("Objectives") + " %(hotkey)s", "session.gui.objectives.toggle");
 	Engine.GetGUIObjectByName("gameSpeedButton").tooltip = colorizeHotkey(translate("Choose game speed") + " %(hotkey)s", "session.gui.gamespeed.toggle");
-	Engine.GetGUIObjectByName("viewPlayer").tooltip = sprintf(translate("Player View") + " %(hotkey1)s, ... %(hotkey2)s (On/Off), Previous View %(hotkeyPrev)s", 
+	Engine.GetGUIObjectByName("viewPlayer").tooltip = sprintf(translate("Player View") + " %(hotkey1)s, ... %(hotkey2)s (On/Off), Previous View %(hotkeyPrev)s",
 		{
 			"hotkey1": colorizeHotkey("%(hotkey)s", "session.selectplayer.0"),
 			"hotkey2": colorizeHotkey("%(hotkey)s", "session.selectplayer.8"),
@@ -750,26 +750,26 @@ function init(initData, hotloadData)
 	// setTimeout(function() { reportPerformance(5); }, 5000);
 	// setTimeout(function() { reportPerformance(60); }, 60000);
 	// Engine.GetGUIObjectByName("teamInfo").onPress = () => { warn("ok")};
-	Engine.GetGUIObjectByName("teamInfo").onmouseenter = () => { 
+	Engine.GetGUIObjectByName("teamInfo").onmouseenter = () => {
 		Engine.GetGUIObjectByName("teamInfo").sprite = "BackgroundTranslucent";
 		Engine.GetGUIObjectByName("teamInfoHide").hidden = false;
-		Engine.GetGUIObjectByName("teamInfoHide").onmouseenter = () => { 
+		Engine.GetGUIObjectByName("teamInfoHide").onmouseenter = () => {
 			Engine.GetGUIObjectByName("teamInfo").sprite = "BackgroundTranslucent2";
 			Engine.GetGUIObjectByName("observersList").sprite = "";
 			Engine.GetGUIObjectByName("teamInfoHide").hidden = true;
 		};
 	};
-	Engine.GetGUIObjectByName("observersList").onmouseenter = () => { 
+	Engine.GetGUIObjectByName("observersList").onmouseenter = () => {
 		Engine.GetGUIObjectByName("observersList").sprite = "BackgroundTranslucent2";
 		Engine.GetGUIObjectByName("teamInfoHide").hidden = false;
-		Engine.GetGUIObjectByName("teamInfoHide").onmouseenter = () => { 
+		Engine.GetGUIObjectByName("teamInfoHide").onmouseenter = () => {
 			Engine.GetGUIObjectByName("observersList").sprite = "";
 			Engine.GetGUIObjectByName("teamInfo").sprite = "BackgroundTranslucent2";
 			Engine.GetGUIObjectByName("teamInfoHide").hidden = true;
 		};
 	};
 
-	
+
 	// let playerStates =  Engine.GuiInterfaceCall("GetExtendedSimulationState").players;
 	// warn(playerStates[2].phase)
 	// let kill = playerStates[1];
@@ -1018,15 +1018,15 @@ function updateViewedPlayerDropdown()
 		(player, i) => (i>=0 ? player.teamsLocked ? setStringTags(i, { "color": "white" }) + "." + (player.team > -1 ? setStringTags(" T." + (player.team+1), { "color": "white" })
 		 : "") + " " :
 			i + ". " +
-			(g_ViewedPlayer >= 0 ? 
+			(g_ViewedPlayer >= 0 ?
 				( g_ViewedPlayer == player.id ? "~" : player.isEnemy[g_ViewedPlayer] ? "-" : player.isNeutral[g_ViewedPlayer] ? "=" : viewedPlayer.isAlly[player.id] ? "+" : "") + " " :
 				"") :
-			"") + 
-		(player.state == "defeated" ? 
+			"") +
+		(player.state == "defeated" ?
 			colorizePlayernameHelper("■", player.id) + " " + setStringTags(player.name, { "color": "128 128 128"}) :
-			player.state == "won" ? 
+			player.state == "won" ?
 			colorizePlayernameHelper("■", player.id) + " " + setStringTags(player.name, { "color": "255 237 34"}) :
-			player.state == "Offline" || player.offline ? 
+			player.state == "Offline" || player.offline ?
 			colorizePlayernameHelper("■", player.id) + " " + setStringTags(player.name, { "color": "255 0 0"}) :
 			colorizePlayernameHelper("■", player.id) + " " + player.name)
 	));
@@ -1061,7 +1061,7 @@ function showReplaceButton()
 	if (selected <= 1)
 		return;
 	let player = g_Players[Engine.GetGUIObjectByName("viewPlayer").selected -1 ];
-	
+
 	Engine.GetGUIObjectByName("replaceButton").tooltip = "Replace " + colorizePlayernameHelper(player.name, player.id) + ", reconnect as him, if " + setStringTags("he is offline", { color: "yellow"}) + " and in the host " + setStringTags("lobby authentication isn't enabled", { color: "yellow"}) + " (try out)."
 }
 
@@ -1290,7 +1290,7 @@ function equalizeResourcesWithAllies()
 			amounts[res] = Math.floor(amounts[res]/(playersPerRes[res].length + 1));
 
 		for (let res of resCodes)
-			playersPerRes[res].forEach(pl => { 
+			playersPerRes[res].forEach(pl => {
 				let amountsSend = [];
 				amountsSend[res] = amounts[res] - playerStates[pl.id].resourceCounts[res];
 				Engine.PostNetworkCommand({ "type": "tribute", "player": pl.id, "amounts": amountsSend });
@@ -1410,6 +1410,21 @@ function restoreSavedGameData(data)
 	updateGroups();
 }
 
+var g_teamInfoTimer = 0;
+
+/**
+ * update teamInfo each second
+ */
+
+function updateTeamInfo()
+{
+	if (!g_teamInfoTimer)
+		g_teamInfoTimer = setTimeout(function () {
+			g_teamInfoTimer = 0;
+			teamInfo();
+		}, 1000);
+}
+
 /**
  * Called every frame.
  */
@@ -1454,7 +1469,7 @@ function onTick()
 
 	updateObserver();
 
-	teamInfo();
+	updateTeamInfo();
 }
 
 function onWindowResized()
@@ -1838,7 +1853,7 @@ function teamInfo()
 	let playerStates =  Engine.GuiInterfaceCall("GetExtendedSimulationState").players;
 	if (!playerStates)
 		return;
-		
+
 	if (!g_IsObserver && (!playerStates[g_ViewedPlayer].hasSharedLos || g_Players[g_ViewedPlayer].isMutualAlly.reduce((a, b) => a + b, 0) <= 1))
 	{
 		Engine.GetGUIObjectByName("teamInfo").hidden = true;
@@ -1859,10 +1874,10 @@ function teamInfo()
 		plHighest[res] = {};
 		highest = 0;
 		playerStates.forEach((stat, pl) => {
-			
+
 			if (!g_IsObserver && !g_Players[g_ViewedPlayer].isMutualAlly[pl] && g_Players[pl].state == "defeated") // || pl == g_ViewedPlayer)
 				return;
-			
+
 			uk[pl] = 0;
 			if (pl > 0)
 			{
@@ -1872,7 +1887,7 @@ function teamInfo()
 			}
 			resAm = (res == "pop") ? stat.popCount : (res == "uk") ? uk[pl] : (res == "phase") ? (!!stat.phase ? phase[stat.phase] : 0) : Math.round(stat.resourceCounts[res]);
 			if (resAm > highest)
-			{ 
+			{
 				plHighest[res] = {};
 				plHighest[res][pl] = resAm;
 				highest = resAm;
@@ -1883,7 +1898,7 @@ function teamInfo()
 			}
 			stat.id = pl;
 		});
-	} 
+	}
 
 	// "values": resource == "pop" ? [ playerStates[player].popCount, playerStates[player].popLimit, playerStates[player].popMax ] :
 	// [ Math.round(playerStates[player].resourceCounts[resource]) ]
@@ -1891,12 +1906,12 @@ function teamInfo()
 	let f = (s,l) => { let a = l - s.length; for (let i=0; i < a; i++) s = " " + s; return s; };
 	let f2 = s => f(s,6);
 
-	tool += playerStates.filter((stat,pl) => g_IsObserver || 
+	tool += playerStates.filter((stat,pl) => g_IsObserver ||
 		g_Players[g_ViewedPlayer].isMutualAlly[pl] ).map((stat) => {
 		let pl = stat.id;
-	
+
 		let playerColor = pl > -1 ? rgbToGuiColor(g_DisplayedPlayerColors[pl]) : "white";
-		let add = setStringTags(pl + ".", { "color": playerColor }) + " " + 
+		let add = setStringTags(pl + ".", { "color": playerColor }) + " " +
 		setStringTags(g_Players[pl].name.substring(0,20), { "color": g_Players[pl].state == "defeated" ? "255 255 255 128" : "white" });
 		for (let res of resses)
 		{
@@ -1919,7 +1934,7 @@ function teamInfo()
 	// 	+ setStringTags("   100", { "color": "255 255 180 255" })
 	// 	+ setStringTags("   120", { "color": "255 255 180 255" })
 	// 	+ setStringTags("  2300\n", { "color": "255 255 180 255" });
-	
+
 	Engine.GetGUIObjectByName("teamInfo").caption = setStringTags("P   Pop  Food  Wood Stone Metal    UK \n" + tool, { "color": "255 255 255 255", "font": "mono-10" });
 
 }
@@ -2247,7 +2262,7 @@ function toggleReplace()
 	let selected = Engine.GetGUIObjectByName("viewPlayer").selected;
 	if (selected <= 1)
 		return;
-	
+
 	let player = g_Players[Engine.GetGUIObjectByName("viewPlayer").selected -1 ];
 
 	// TODO: Offline player (g_Players[g_ViewedPlayer].offline) is at the moment not up-to-date for rejoining players
