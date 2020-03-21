@@ -55,7 +55,7 @@ var g_PlayerStatuses = {
 	"offline":   { "style": {}, "buddyStyle": {} , "status": translate("Offline") },
 	"unknown":   { "style": {}, "buddyStyle": {} , "status": translateWithContext("lobby presence", "Unknown") }
 };
- 
+
 /**
  * Style for indicating the user in the playerlist and the game where he is listed.
  */
@@ -503,7 +503,7 @@ var g_ChatCommands = {
 	},
 	"showip": {
 		"description": translate("Show ip and port of the selected game from the gamelist."),
-		"handler": args =>  { 
+		"handler": args =>  {
 
 			let gamesBox = Engine.GetGUIObjectByName("gameList");
 			if (gamesBox.selected > -1)
@@ -578,7 +578,7 @@ function focusSwitch()
 		return;
 		}
 	}
-	
+
 	++g_FocusObj.ptr;
 	// warn(g_FocusObj.ptr);
 	g_FocusObj.ptr = g_FocusObj.ptr >= g_FocusObj.list.length ? 0 : g_FocusObj.ptr;
@@ -594,7 +594,7 @@ function initFocusSwitcher()
 	}
 	g_FocusObj.switchCheck.push(obj => { warn("K"); return !obj.caption.length; });
 	g_FocusObj.localTabHotkey.push(obj => { warn("j"); autoCompleteNick(this, g_PlayerList.map(player => player.name).concat(
-		Object.keys(g_ChatCommands).sort().map(com => { return "/" + com; })))}); 
+		Object.keys(g_ChatCommands).sort().map(com => { return "/" + com; })))});
 	g_FocusObj.switchCheck.push(() => true);
 	g_FocusObj.switchCheck.push(() => true);
 	// warn(g_FocusObj.list.length)
@@ -643,7 +643,7 @@ function init(attribs = {})
 	initUserConfigurables();
 
 	updateToggleBuddy();
-	Engine.GetGUIObjectByName("chatInput").tooltip = 
+	Engine.GetGUIObjectByName("chatInput").tooltip =
 		colorizeAutocompleteHotkey("Press %(hotkey)s to focus chat input and keep pressing %(hotkey)s to cycle through all autocompleting playernames or /-commands.\nEnter " + setStringTags("/help", { "color": "yellow"}) + " for all /-commands.");
 
 	// Get all messages since the login
@@ -871,7 +871,7 @@ function applyPlayerPresence(presence)
 /**
  * Apply lobby presence for player.
  * 500ms timeouts between multiple presence changes. After timeout applies latest presence change.
- * 
+ *
  * @param {string} presence - Presence string for user. ("available", "away", "busy")
  * @param {bool} awayTime - Optional auto away when time g_AutoAway.timeMinutes inactive.
  * @param {bool} awayBackground - Optional auto away when window looses focus.
@@ -903,7 +903,7 @@ function setPlayerPresence(presence, awayTime, awayBackground, awayTimeInBackgro
 function handleInputAfterGui(ev)
 {
 	// Wait for window focus to reset auto away.
-	if (g_WindowFocus) // ev.type != "mousemotion" && 
+	if (g_WindowFocus) // ev.type != "mousemotion" &&
 		resetAutoAway();
 
 	return false;
@@ -1293,7 +1293,7 @@ function setLeftPanelExpanded(expanded)
 	Engine.GetGUIObjectByName("profilePanel").hidden = expanded;
 	Engine.GetGUIObjectByName("leftPanel").size = "20 " +(g_Dialog ? "18" : "40") + " 20% 100%-105" + (expanded ? "" : "-205");
 }
- 
+
 function setGameListBoxUnselected(cancelHotkeyFunctionIndex)
 {
 	if (Engine.GetGUIObjectByName("gameList").selected == -1)
@@ -1548,7 +1548,7 @@ function updateGameList(autoScroll = false)
 			{
 				++game.buddies;
 			}
-			
+
 			if (player.Team == "observer")
 				++game.observeNum;
 		}
@@ -1562,7 +1562,7 @@ function updateGameList(autoScroll = false)
 				Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
 				g_DefaultLobbyRating;
 
-		if (!hasSameMods(JSON.parse(game.mods), g_EngineInfo.mods))
+		if (!!game.mods && !hasSameMods(JSON.parse(game.mods), g_EngineInfo.mods))
 			game.state = "incompatible";
 
 		return game;
@@ -1597,7 +1597,7 @@ function updateGameList(autoScroll = false)
 	let list = [];
 	let list_data = [];
 	let selectedGameIndex = -1;
-	
+
 	for (let i in g_GameList)
 	{
 		let game = g_GameList[i];
@@ -1617,14 +1617,14 @@ function updateGameList(autoScroll = false)
 			g_GameColors[game.state].style)
 			: "")+setStringTags(game.buddies ? " " + game.buddies : "", { "color": "255 215 0" }));
 
-		let fgod = JSON.parse(game.mods).some(mod => mod[0].startsWith("fgod"));
+		let fgod = !!game.mods && JSON.parse(game.mods).some(mod => mod[0].startsWith("fgod"));
 		list_name.push(setStringTags(gameName, fgod ? { "color": "yellow" } : highlightedBuddy && game.hasUser ? g_UserStyle :
 			highlightedBuddy && game.hasBuddies ? g_GameColors[game.state].buddyStyle : g_GameColors[game.state].style));
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
 		let ob = game.observeNum ? setStringTags(" +" + game.observeNum + "", { "color": "255 215 0" }) : "";
-			
+
 		list_nPlayers.push(game.nbp + "/" + game.maxnbp + ob);
 		list_gameRating.push(game.gameRating);
 		list.push(gameName);
@@ -1641,7 +1641,7 @@ function updateGameList(autoScroll = false)
 	gamesBox.list_nPlayers = list_nPlayers;
 	gamesBox.list_gameRating = list_gameRating;
 	gamesBox.list_time = list_time;
-	
+
 	// Change these last, otherwise crash
 	gamesBox.list = list;
 	gamesBox.list_data = list_data;
