@@ -1,9 +1,4 @@
-# fgod mod for 0 A. D. version A23
-
-If you like the work of fgod mod you can donate in PayPal to fraizy@gmx.de (Euro fees free).
-
-Ever donation welcome. Makes me proud :).
-
+# Mod for the RTS Game 0 A. D. version Alpha 23 (https://play0ad.com/)
 
 Report Feedback/Bugs:
 
